@@ -14,7 +14,6 @@ public class TestJDBC {
 
 
     private final InputStream systemIn = System.in;
-    private ByteArrayInputStream testIn;
 
     @Before
     public void setUp() {
@@ -27,7 +26,7 @@ public class TestJDBC {
     }
 
     private void provideInput(String data) {
-        testIn = new ByteArrayInputStream(data.getBytes());
+        ByteArrayInputStream testIn = new ByteArrayInputStream(data.getBytes());
         System.setIn(testIn);
     }
 
@@ -38,7 +37,7 @@ public class TestJDBC {
 
     @Test
     public void testInserirUsuario() {
-        provideInput("testuser\ntestpass\nTest User\n1990-01-01\n");
+        provideInput("\ntestuser\ntestpass\nTest User\n1990-01-01\n");
         try {
             Main.inserirUsuario(new Scanner(System.in));
         } catch (Exception e) {
@@ -80,7 +79,7 @@ public class TestJDBC {
 
     @Test
     public void testCadastrarCliente() {
-        provideInput("Test Client\n12345678900\n");
+        provideInput("\nTest Client\n12345678900\n");
         try {
             Main.cadastrarCliente(new Scanner(System.in));
         } catch (Exception e) {
